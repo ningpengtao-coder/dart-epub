@@ -1,15 +1,13 @@
-# Defines a default set of lint rules enforced for
-# projects at Google. For details and rationale,
-# see https://github.com/dart-lang/pedantic#enabled-lints.
-include: package:pedantic/analysis_options.yaml
-
-# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
-# Uncomment to specify additional rules.
-# linter:
-#   rules:
-#     - camel_case_types
+include: package:lints/recommended.yaml
 
 analyzer:
   exclude:
     - example/**
-    - test/**
+
+linter:
+  rules:
+    # 上游公共 API 沿用 PascalCase 字段名，保持与 epubx 调用方兼容。
+    non_constant_identifier_names: false
+    constant_identifier_names: false
+    # 内部 writers 之间沿用 package 路径互相引用，属于上游既有结构。
+    implementation_imports: false
