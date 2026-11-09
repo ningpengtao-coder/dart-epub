@@ -7,9 +7,9 @@ environment:
   sdk: ^3.10.7
 
 dependencies:
-  archive: ^3.6.1
+  archive: ^4.0.9
   collection: ^1.19.0
-  image: ^4.1.7
+  image: ^4.8.0
   quiver: ^3.2.2
   xml: ^6.6.1
 

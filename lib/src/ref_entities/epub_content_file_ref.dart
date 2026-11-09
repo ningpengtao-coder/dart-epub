@@ -56,14 +56,14 @@ abstract class EpubContentFileRef {
   }
 
   List<int> openContentStream(ArchiveFile contentFileEntry) {
-    var contentStream = <int>[];
-    if (contentFileEntry.content == null) {
+    // archive 4.x 的 `content` 已是非空 getter，用 readBytes() 保留“读不出即报错”的语义。
+    final content = contentFileEntry.readBytes();
+    if (content == null) {
       throw Exception(
-        'Incorrect EPUB file: content file \"$FileName\" specified in manifest is not found.',
+        'Incorrect EPUB file: content file "$FileName" specified in manifest is not found.',
       );
     }
-    contentStream.addAll(contentFileEntry.content);
-    return contentStream;
+    return content;
   }
 
   Future<List<int>> readContentAsBytes() async {
